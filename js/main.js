@@ -7,19 +7,38 @@ const giraDOM = document.querySelector('#gira');
 const pienasDOM = document.querySelector('#pienas');
 const buttonDOM = document.querySelector('button');
 const orderDOM = document.querySelector('.order');
+const gerimaiDOM = document.querySelectorAll('input[name="gerimas"')
 
 
-const item = ' ';
+function aryraVardas (item) {
+    if (vardasDOM.value === '') 
+    return vardasDOM.value
+} 
+
+
 
 function norinenori(item) {
     return item.checked ? 'nori' : "nenori"
 }
 
-
-
-
+function gerimasNori(DOMlist) {
+    for (const itemDOM of DOMlist) {
+        if (itemDOM.checked) {
+            return itemDOM.value;
+        }
+    }
+}
 
 buttonDOM.addEventListener('click', (event) => {
     event.preventDefault();
-    orderDOM.innerText = `Uzsakovas vardu ${vardasDOM.value}  , ${norinenori(sriubaDOM)} sriubos,${norinenori(patiekalasDOM)} pagrindinio patiekalo, ${norinenori(desertasDOM)} deserto ir[gerymo pavadinimas]yra pasirinktas gerimas.`
+    let kreipinys = ''
+    if (vardasDOM.value === '') {
+        kreipinys =  'kuris nera pateikes vardo'
+    } else {
+        kreipinys = 'vardu ' + vardasDOM.value
+    }
+
+    let kreipinys2 = gerimasNori(gerimaiDOM) ? gerimasNori(gerimaiDOM) + ' yra pasirinktas gerimas.' : 'nepasirinko jokio gerimo'
+
+    orderDOM.innerText = `Uzsakovas ${kreipinys} ${aryraVardas(vardasDOM)}  , ${norinenori(sriubaDOM)} sriubos,${norinenori(patiekalasDOM)} pagrindinio patiekalo, ${norinenori(desertasDOM)}  deserto ir ${kreipinys2}`
 });
