@@ -1,20 +1,24 @@
-function generuotiLenta (selector, number) {
-    const DOM = document.querySelector(selector);
-    if (!DOM) {
-        return false
-    }
-    if (number < 0 || number % 1 !== 0) {
-
-        return false
-    }
-    let HTML = '';
-    for (let i=1; i<=number; i++) {
-        HTML += `<div>${i}</div>`;
-    }
-    return DOM.innerHTML = HTML
+function renderNav() {
 
 }
 
+const menu = [
+    {
+        href: '#',
+        title: 'Home'
+    },
+    {
+        href: '#',
+        title: 'Services'
+    },
+    {
+        href: '#',
+        title: 'About us'
+    },
+    {
+        href: '#',
+        title: 'Contact us'
+    }
+];
 
-
-console.log(generuotiLenta('.lenta', 4));
+renderNav('header', menu);
